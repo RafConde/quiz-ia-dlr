@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certificación IA · dlR Group</title>
+<style>
+  :root {
+    --orange: #D85A30;
+    --orange-light: #FAECE7;
+    --orange-dark: #993C1D;
+    --black: #111111;
+    --gray-900: #1C1C1C;
+    --gray-700: #444444;
+    --gray-400: #999999;
+    --gray-100: #F5F5F5;
+    --white: #FFFFFF;
+    --green: #2E7D32;
+    --green-light: #E8F5E9;
+    --red: #B71C1C;
+    --red-light: #FFEBEE;
+    --radius: 10px;
+    --radius-sm: 6px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--gray-100);
+    color: var(--black);
+    min-height: 100vh;
+  }
+
+  /* Header */
+  .header {
+    background: var(--black);
+    color: var(--white);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .header-logo span { color: var(--orange); }
+  .header-badge {
+    font-size: 11px;
+    background: var(--orange);
+    color: var(--white);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  /* Progress */
+  .progress-wrap {
+    background: var(--white);
+    border-bottom: 1px solid #E0E0E0;
+    padding: 0.75rem 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .progress-bar {
+    flex: 1;
+    height: 5px;
+    background: #E0E0E0;
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--orange);
+    border-radius: 3px;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    font-size: 12px;
+    color: var(--gray-400);
+    white-space: nowrap;
+    min-width: 60px;
+    text-align: right;
+  }
+
+  /* Screens */
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* Container */
+  .container {
+    max-width: 680px;
+    margin: 2rem auto;
+    padding: 0 1.5rem 4rem;
+  }
+
+  /* Card */
+  .card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2rem;
+    border: 1px solid #E8E8E8;
+  }
+
+  /* Intro screen */
+  .intro-hero {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+  }
+  .intro-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--orange-light);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 32px;
+  }
+  .intro-hero h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .intro-hero p {
+    font-size: 15px;
+    color: var(--gray-700);
+    line-height: 1.6;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 1.75rem 0;
+  }
+  .stat-box {
+    background: var(--gray-100);
+    border-radius: var(--radius-sm);
+    padding: 1rem;
+    text-align: center;
+  }
+  .stat-num {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--orange);
+    display: block;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--gray-400);
+    margin-top: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  /* Form fields */
+  .field-group { margin-bottom: 1.25rem; }
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+  input[type="text"], input[type="email"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1.5px solid #E0E0E0;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    color: var(--black);
+    background: var(--white);
+    transition: border-color 0.2s;
+    outline: none;
+  }
+  input:focus { border-color: var(--orange); }
+  input.error { border-color: var(--red); }
+
+  /* Buttons */
+  .btn-primary {
+    background: var(--orange);
+    color: var(--white);
+    border: none;
+    padding: 13px 28px;
+    border-radius: var(--radius-sm);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--orange-dark); }
+  .btn-primary:active { transform: scale(0.98); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-700);
+    border: 1.5px solid #E0E0E0;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gray-400); background: var(--gray-100); }
+
+  /* Question screen */
+  .q-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+  }
+  .q-text {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--black);
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+  .q-context {
+    background: var(--gray-100);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--gray-700);
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+  }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    border: 1.5px solid #E0E0E0;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    background: var(--white);
+    text-align: left;
+    width: 100%;
+  }
+  .option:hover:not(:disabled) { border-color: var(--orange); background: var(--orange-light); }
+  .option.selected { border-color: var(--orange); background: var(--orange-light); }
+  .option.correct { border-color: var(--green); background: var(--green-light); }
+  .option.wrong { border-color: var(--red); background: var(--red-light); }
+  .option.dimmed { opacity: 0.35; }
+  .option:disabled { cursor: default; }
+  .opt-letter {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--gray-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-700);
+    flex-shrink: 0;
+    transition: background 0.15s, color 0.15s;
+  }
+  .option.selected .opt-letter { background: var(--orange); color: var(--white); }
+  .option.correct .opt-letter { background: var(--green); color: var(--white); }
+  .option.wrong .opt-letter { background: var(--red); color: var(--white); }
+  .opt-text { font-size: 14px; color: var(--black); line-height: 1.5; padding-top: 2px; }
+
+  /* Feedback */
+  .feedback {
+    margin-top: 1.25rem;
+    padding: 14px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .feedback.ok { background: var(--green-light); color: #1B5E20; border: 1px solid #A5D6A7; }
+  .feedback.bad { background: var(--red-light); color: #7F0000; border: 1px solid #EF9A9A; }
+  .feedback strong { display: block; margin-bottom: 4px; font-size: 13px; }
+
+  /* Nav */
+  .nav-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+  }
+
+  /* Timer */
+  .timer-wrap {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: var(--gray-400);
+  }
+  .timer-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--orange);
+    animation: pulse 1.5s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* Results */
+  .result-hero { text-align: center; padding: 1rem 0 1.5rem; }
+  .score-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 6px solid var(--orange);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.25rem;
+  }
+  .score-big { font-size: 32px; font-weight: 700; color: var(--orange); line-height: 1; }
+  .score-denom { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
+  .result-msg { font-size: 16px; font-weight: 600; margin-bottom: 0.5rem; }
+  .result-sub { font-size: 14px; color: var(--gray-700); line-height: 1.6; max-width: 400px; margin: 0 auto; }
+  .cert-badge {
+    display: inline-block;
+    background: var(--orange-light);
+    color: var(--orange-dark);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1rem;
+  }
+  .review-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 8px; }
+  .review-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 14px;
+    border-radius: var(--radius-sm);
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .review-item.ok-item { background: var(--green-light); color: #1B5E20; }
+  .review-item.bad-item { background: var(--red-light); color: #7F0000; }
+  .review-icon { flex-shrink: 0; font-size: 15px; }
+
+  .contact-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid #E8E8E8;
+    font-size: 12px;
+    color: var(--gray-400);
+    text-align: center;
+  }
+  .contact-footer strong { color: var(--gray-700); }
+
+  @media (max-width: 480px) {
+    .container { padding: 0 1rem 3rem; }
+    .card { padding: 1.25rem; }
+    .stats-row { grid-template-columns: repeat(3,1fr); gap: 8px; }
+    .stat-num { font-size: 22px; }
+    .intro-hero h1 { font-size: 22px; }
+    .q-text { font-size: 15px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-logo">d<span>l</span>R <span style="color:#666;font-weight:400;font-size:14px">Group</span></div>
+  <div class="header-badge">Certificación IA</div>
+</div>
+
+<!-- PROGRESS BAR (visible durante el quiz) -->
+<div class="progress-wrap" id="progress-wrap" style="display:none">
+  <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+  <div class="progress-text" id="progress-text">1 / 10</div>
+  <div class="timer-wrap"><div class="timer-dot"></div><span id="timer-display">00:00</span></div>
+</div>
+
+<!-- SCREEN 1: INTRO / REGISTRO -->
+<div class="screen active" id="screen-intro">
+  <div class="container">
+    <div class="card">
+      <div class="intro-hero">
+        <div class="intro-icon">📋</div>
+        <h1>Evaluación de certificación<br>Guía práctica de IA</h1>
+        <p>Demuestra que conoces los principios, reglas y límites del uso responsable de IA en dlR Group.</p>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><span class="stat-num">10</span><div class="stat-label">Preguntas</div></div>
+        <div class="stat-box"><span class="stat-num">70%</span><div class="stat-label">Mínimo para aprobar</div></div>
+        <div class="stat-box"><span class="stat-num">~10'</span><div class="stat-label">Duración</div></div>
+      </div>
+      <div style="border-top:1px solid #E8E8E8;padding-top:1.5rem;margin-top:0.5rem">
+        <div class="field-group">
+          <label for="inp-name">Nombre completo</label>
+          <input type="text" id="inp-name" placeholder="Ej. Ana González" />
+        </div>
+        <div class="field-group">
+          <label for="inp-email">Correo corporativo</label>
+          <input type="email" id="inp-email" placeholder="nombre@delarivagroup.com" />
+        </div>
+        <div id="form-error" style="font-size:13px;color:var(--red);margin-bottom:1rem;display:none">Por favor completa los campos antes de continuar.</div>
+        <button class="btn-primary" onclick="startQuiz()" style="width:100%">Comenzar evaluación →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: PREGUNTA -->
+<div class="screen" id="screen-question">
+  <div class="container">
+    <div class="card" id="question-card"></div>
+  </div>
+</div>
+
+<!-- SCREEN 3: RESULTADOS -->
+<div class="screen" id="screen-results">
+  <div class="container">
+    <div class="card" id="results-card"></div>
+  </div>
+</div>
+
+<script>
+const questions = [
+  {
+    topic: 'Principio fundamental',
+    q: '¿Cuál es la descripción más precisa del rol de la IA dentro del flujo de trabajo en dlR?',
+    context: null,
+    options: [
+      'La IA toma decisiones y el humano las revisa si tiene tiempo',
+      'El humano define el objetivo, la IA fortalece el análisis, y el humano decide y responde por el resultado final',
+      'La IA y el humano comparten la responsabilidad del resultado de forma equitativa',
+      'La IA es responsable de los outputs siempre que se use en cuenta corporativa'
+    ],
+    correct: 1,
+    feedback: 'El flujo correcto es: TÚ piensas → IA fortalece → TÚ decides → TÚ respondes. La responsabilidad final siempre recae en el humano, independientemente de la herramienta usada.'
+  },
+  {
+    topic: 'Usos permitidos',
+    q: '¿Cuál de los siguientes es un uso permitido y responsable de IA en tu trabajo diario?',
+    context: null,
+    options: [
+      'Generar y enviar directamente una propuesta comercial a un cliente sin revisión humana',
+      'Subir la base de datos completa de un estudio para que la IA haga el análisis automáticamente',
+      'Usar IA para explorar alternativas de estructura narrativa en un reporte, revisando y ajustando el output antes de usarlo',
+      'Usar ChatGPT gratuito para redactar un documento con estrategia confidencial del cliente'
+    ],
+    correct: 2,
+    feedback: 'Usar IA para mejorar ideas y estructura editorial es un uso permitido, siempre que TÚ generes la dirección inicial y supervises el output. Los otros casos involucran datos sensibles, cuentas no autorizadas o falta de validación humana.'
+  },
+  {
+    topic: 'Clasificación de datos',
+    q: 'Un colega quiere subir los siguientes datos a Claude Pro corporativo para análisis. ¿Cuál es el único caso que cumple con los lineamientos sin requerir pasos adicionales?',
+    context: null,
+    options: [
+      'Transcripción literal de un focus group con datos de participantes identificables',
+      'Estrategia de entrada al mercado de un cliente con información financiera',
+      'Datos de satisfacción agregados por región (edad, NSE) sin nombres ni identificadores',
+      'Base de datos de encuesta con emails y teléfonos de respondentes'
+    ],
+    correct: 2,
+    feedback: 'Datos agregados sin posibilidad de identificación son Nivel 1: se pueden usar con cualquier herramienta, incluso gratuita. Los otros tres casos son Nivel 2 o Nivel 3 y requieren pasos adicionales o están prohibidos sin autorización explícita.'
+  },
+  {
+    topic: 'Tipos de cuenta',
+    q: 'Tienes una cuenta corporativa Pro de Claude. ¿Qué afirmación es correcta respecto a lo que puedes hacer con datos de clientes?',
+    context: null,
+    options: [
+      'Puedes subir cualquier dato porque la cuenta Pro garantiza privacidad total',
+      'Puedes subir datos Nivel 2 siempre que primero verifiques el contrato con el cliente y el aviso de privacidad a participantes',
+      'Las cuentas Pro eliminan todas las restricciones contractuales y legales',
+      'Puedes subir datos Nivel 3 si el archivo está en PDF y no en formato de base de datos'
+    ],
+    correct: 1,
+    feedback: 'Mayor seguridad técnica NO significa libertad total. Con cuentas corporativas debes: verificar el contrato con el cliente, revisar el aviso de privacidad a participantes, y obtener autorización cuando sea necesario. El formato del archivo no cambia el nivel de sensibilidad del dato.'
+  },
+  {
+    topic: 'Datos prohibidos',
+    q: 'Eres investigadora cualitativa. El cliente te presiona para entregar resultados rápido. ¿Cuál de estas acciones está PROHIBIDA según la guía?',
+    context: 'El estudio incluyó entrevistas a profundidad con consumidores. Tienes las transcripciones completas con nombres, edad y ciudad de cada participante.',
+    options: [
+      'Pedirle a la IA sugerencias sobre técnicas proyectivas para explorar emociones',
+      'Usar IA para estructurar el reporte final con base en tus notas personales (sin datos de participantes)',
+      'Subir las transcripciones completas a ChatGPT gratuito para obtener insights rápido',
+      'Consultar a tu líder si puedes usar las transcripciones con herramientas de IA antes de proceder'
+    ],
+    correct: 2,
+    feedback: 'Las transcripciones con datos identificables son Nivel 3 (PII). Subirlas a una cuenta gratuita está terminantemente prohibido: los datos pueden usarse para entrenar modelos, no hay garantías de privacidad y viola las obligaciones contractuales con el cliente.'
+  },
+  {
+    topic: 'Validación humana',
+    q: 'Generaste con IA un análisis de benchmarking de la industria para incluir en una propuesta. ¿Qué debes hacer antes de usarlo?',
+    context: null,
+    options: [
+      'Enviarlo directamente porque la IA usó fuentes públicas',
+      'Validar las fuentes de origen de la información, revisar críticamente el contenido y adaptarlo al estilo de dlR',
+      'Agradecerle al cliente que confíe en el análisis asistido por IA',
+      'Pedir a la IA que valide su propio output antes de usar'
+    ],
+    correct: 1,
+    feedback: 'Las IAs pueden "alucinar" — generar información incorrecta o inventada. Siempre debes validar fuentes, revisar críticamente y hacer el output tuyo antes de usarlo en cualquier entregable, aunque la información parezca correcta.'
+  },
+  {
+    topic: 'Protocolo de incidentes',
+    q: 'Accidentalmente subiste a una herramienta de IA un contrato con información confidencial de un cliente. ¿Cuál es el orden correcto de acciones?',
+    context: null,
+    options: [
+      'Borrar el historial de la herramienta y no mencionar el incidente para no alarmar al equipo',
+      'Esperar a ver si el cliente se entera antes de tomar acción',
+      'Reportar inmediatamente al líder directo, documentar qué información subiste y a qué herramienta, y seguir el protocolo de incidentes sin borrar evidencia',
+      'Contactar directamente al proveedor de IA para pedirle que elimine los datos'
+    ],
+    correct: 2,
+    feedback: 'Ante un incidente: (1) Reporta inmediatamente a tu líder, (2) Documenta qué información subiste y a qué herramienta, (3) NO borres evidencia — se necesita para evaluar el impacto, (4) Sigue el protocolo de incidentes. Ocultar el incidente agrava el problema legal y reputacional.'
+  },
+  {
+    topic: 'Decisiones críticas',
+    q: '¿Cuál de las siguientes situaciones representa una violación al principio de responsabilidad humana en el uso de IA?',
+    context: null,
+    options: [
+      'Usar IA para generar ideas de preguntas para un cuestionario y luego revisarlas con el equipo',
+      'Pedir a la IA sugerencias de frameworks de análisis competitivo como punto de partida',
+      'Usar IA para determinar automáticamente el precio de una propuesta comercial sin revisión humana',
+      'Generar un borrador de email con IA y ajustarlo antes de enviarlo'
+    ],
+    correct: 2,
+    feedback: 'Delegar decisiones críticas (precios, contrataciones, estrategia) a la IA sin revisión humana es una violación ética y una abdicación de responsabilidad. La IA puede proporcionar insumos, pero las decisiones de negocio deben ser tomadas por humanos.'
+  },
+  {
+    topic: 'Etiquetado de contenido IA',
+    q: '¿En qué situación es obligatorio etiquetar un entregable como "Generado por IA" o "IA-asistido"?',
+    context: null,
+    options: [
+      'Solo cuando el cliente lo pida explícitamente',
+      'Cuando el resultado final es 100% generado por IA sin modificación ni criterio humano añadido',
+      'Nunca, porque el cliente podría perder confianza en el trabajo',
+      'Solo en reportes externos, no en documentos internos'
+    ],
+    correct: 1,
+    feedback: 'Si el output va directo al cliente o uso final sin modificación humana, debe etiquetarse claramente. Si tú revisaste, validaste y añadiste criterio experto, el output ya es tuyo. La transparencia protege a dlR legal y reputacionalmente.'
+  },
+  {
+    topic: 'Principio de precaución',
+    q: 'Tienes dudas sobre si tu contrato con el cliente permite usar IA para procesar datos del estudio. ¿Qué debes hacer?',
+    context: 'El cliente es una empresa multinacional con cláusulas estrictas de confidencialidad. No encontraste una mención explícita al uso de IA en el contrato.',
+    options: [
+      'Proceder con cautela usando solo la cuenta corporativa, ya que es técnicamente segura',
+      'Consultar con tu líder y/o área legal antes de subir cualquier dato, aunque eso implique retrasar el trabajo',
+      'Si el contrato no lo prohíbe explícitamente, puedes proceder',
+      'Anonimizar los datos cambiando los nombres y proceder con herramientas gratuitas'
+    ],
+    correct: 1,
+    feedback: 'El principio de precaución de la guía es claro: "En caso de duda, no lo subas. Consulta primero." Es mejor retrasar el trabajo que violar un acuerdo contractual. La ausencia de prohibición explícita no equivale a permiso. Siempre consulta con tu líder o legal.'
+  }
+];
+
+let userName = '';
+let userEmail = '';
+let currentQ = 0;
+let answers = [];
+let startTime = null;
+let timerInterval = null;
+
+function startQuiz() {
+  const name = document.getElementById('inp-name').value.trim();
+  const email = document.getElementById('inp-email').value.trim();
+  const errEl = document.getElementById('form-error');
+
+  if (!name || !email || !email.includes('@')) {
+    errEl.style.display = 'block';
+    if (!name) document.getElementById('inp-name').classList.add('error');
+    if (!email || !email.includes('@')) document.getElementById('inp-email').classList.add('error');
+    return;
+  }
+
+  userName = name;
+  userEmail = email;
+  currentQ = 0;
+  answers = [];
+
+  document.getElementById('progress-wrap').style.display = 'flex';
+  startTime = Date.now();
+  timerInterval = setInterval(updateTimer, 1000);
+
+  showScreen('screen-question');
+  renderQuestion();
+}
+
+function updateTimer() {
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = String(Math.floor(elapsed / 60)).padStart(2, '0');
+  const s = String(elapsed % 60).padStart(2, '0');
+  document.getElementById('timer-display').textContent = `${m}:${s}`;
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  const answered = answers[currentQ];
+  const letters = ['A', 'B', 'C', 'D'];
+
+  document.getElementById('progress-fill').style.width = `${((currentQ) / 10) * 100}%`;
+  document.getElementById('progress-text').textContent = `${currentQ + 1} / 10`;
+
+  let html = `
+    <div class="q-eyebrow">${q.topic} · Pregunta ${currentQ + 1} de 10</div>
+    <div class="q-text">${q.q}</div>
+    ${q.context ? `<div class="q-context"><strong>Contexto:</strong> ${q.context}</div>` : ''}
+    <div class="options">
+  `;
+
+  q.options.forEach((opt, i) => {
+    let cls = 'option';
+    if (answered !== undefined) {
+      if (i === q.correct) cls += ' correct';
+      else if (i === answered) cls += ' wrong';
+      else cls += ' dimmed';
+    }
+    html += `<button class="${cls}" ${answered !== undefined ? 'disabled' : ''} onclick="selectAnswer(${i})">
+      <div class="opt-letter">${letters[i]}</div>
+      <div class="opt-text">${opt}</div>
+    </button>`;
+  });
+
+  html += `</div>`;
+
+  if (answered !== undefined) {
+    const correct = answered === q.correct;
+    html += `<div class="feedback ${correct ? 'ok' : 'bad'}">
+      <strong>${correct ? '✓ Correcto' : '✗ Incorrecto'}</strong>
+      ${q.feedback}
+    </div>`;
+
+    if (currentQ < questions.length - 1) {
+      html += `<div class="nav-row"><button class="btn-primary" onclick="nextQuestion()">Siguiente →</button></div>`;
+    } else {
+      html += `<div class="nav-row"><button class="btn-primary" onclick="showResults()">Ver mi resultado →</button></div>`;
+    }
+  }
+
+  document.getElementById('question-card').innerHTML = html;
+}
+
+function selectAnswer(i) {
+  if (answers[currentQ] !== undefined) return;
+  answers[currentQ] = i;
+  renderQuestion();
+}
+
+function nextQuestion() {
+  currentQ++;
+  renderQuestion();
+}
+
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJvmb3v833aYrxXQrTakpq6q6Jqw5c7L5pgVd_HPW8jJqPMigTvjmnnHAD_szR_cJRpA/exec';
+
+function enviarResultados(datos) {
+  fetch(SHEET_URL, {
+    method: 'POST',
+    mode: 'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(datos)
+  }).catch(err => console.log('Error al enviar:', err));
+}
+
+function showResults() {
+  clearInterval(timerInterval);
+  document.getElementById('progress-wrap').style.display = 'none';
+
+  const correct = answers.filter((a, i) => a === questions[i].correct).length;
+  const pct = Math.round(correct / 10 * 100);
+  const passed = pct >= 70;
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const m = Math.floor(elapsed / 60);
+  const s = elapsed % 60;
+  const timeStr = `${m}m ${s}s`;
+
+  const detalle = questions.map((q, i) => {
+    const ok = answers[i] === q.correct;
+    return `P${i+1} ${ok ? '✓' : '✗'} (${q.topic})`;
+  }).join(' | ');
+
+  enviarResultados({
+    nombre: userName,
+    correo: userEmail,
+    puntaje: correct,
+    porcentaje: pct,
+    resultado: passed ? 'APROBADO' : 'NO APROBADO',
+    tiempo: timeStr,
+    detalle: detalle
+  });
+
+  let msg, sub;
+  if (pct >= 90) {
+    msg = '¡Excelente resultado!';
+    sub = 'Dominas los principios clave del uso responsable de IA en dlR. Eres un referente para tu equipo.';
+  } else if (pct >= 70) {
+    msg = 'Aprobado';
+    sub = 'Conoces los lineamientos fundamentales. Te recomendamos repasar los temas donde cometiste errores.';
+  } else {
+    msg = 'No aprobado en esta ocasión';
+    sub = 'Hay conceptos importantes que reforzar. Revisa la Guía práctica de IA y vuelve a intentarlo.';
+  }
+
+  let reviewHtml = '';
+  questions.forEach((q, i) => {
+    const ok = answers[i] === q.correct;
+    reviewHtml += `<div class="review-item ${ok ? 'ok-item' : 'bad-item'}">
+      <span class="review-icon">${ok ? '✓' : '✗'}</span>
+      <span>${q.topic}: <em>${q.q.substring(0, 55)}...</em></span>
+    </div>`;
+  });
+
+  const html = `
+    <div class="result-hero">
+      <div class="cert-badge">${passed ? '✓ Certificación aprobada' : 'Certificación no aprobada'}</div>
+      <div class="score-ring">
+        <div class="score-big">${correct}/10</div>
+        <div class="score-denom">${pct}%</div>
+      </div>
+      <div class="result-msg">${msg}</div>
+      <div class="result-sub">${sub}</div>
+      <div style="margin-top:1rem;font-size:13px;color:var(--gray-400)">
+        ${userName} · ${userEmail} · ${timeStr}
+      </div>
+    </div>
+    <div style="border-top:1px solid #E8E8E8;padding-top:1.25rem;margin-top:0.5rem">
+      <div style="font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.4px">Resumen por tema</div>
+      <div class="review-list">${reviewHtml}</div>
+    </div>
+    <div class="contact-footer">
+      ¿Dudas sobre los temas? Escribe a <strong>ia_help@delarivagroup.com</strong> · Slack: <strong>#ia_help</strong>
+    </div>
+  `;
+
+  document.getElementById('results-card').innerHTML = html;
+  showScreen('screen-results');
+}
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>
