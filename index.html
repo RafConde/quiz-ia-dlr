@@ -10,7 +10,6 @@
     --orange-light: #FAECE7;
     --orange-dark: #993C1D;
     --black: #111111;
-    --gray-900: #1C1C1C;
     --gray-700: #444444;
     --gray-400: #999999;
     --gray-100: #F5F5F5;
@@ -23,358 +22,73 @@
     --radius-sm: 6px;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: var(--gray-100);
-    color: var(--black);
-    min-height: 100vh;
-  }
-
-  /* Header */
-  .header {
-    background: var(--black);
-    color: var(--white);
-    padding: 1rem 2rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  .header-logo {
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-  }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-100); color: var(--black); min-height: 100vh; }
+  .header { background: var(--black); color: var(--white); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; }
+  .header-logo { font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
   .header-logo span { color: var(--orange); }
-  .header-badge {
-    font-size: 11px;
-    background: var(--orange);
-    color: var(--white);
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-  }
-
-  /* Progress */
-  .progress-wrap {
-    background: var(--white);
-    border-bottom: 1px solid #E0E0E0;
-    padding: 0.75rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .progress-bar {
-    flex: 1;
-    height: 5px;
-    background: #E0E0E0;
-    border-radius: 3px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: var(--orange);
-    border-radius: 3px;
-    transition: width 0.4s ease;
-  }
-  .progress-text {
-    font-size: 12px;
-    color: var(--gray-400);
-    white-space: nowrap;
-    min-width: 60px;
-    text-align: right;
-  }
-
-  /* Screens */
+  .header-badge { font-size: 11px; background: var(--orange); color: var(--white); padding: 4px 12px; border-radius: 20px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .progress-wrap { background: var(--white); border-bottom: 1px solid #E0E0E0; padding: 0.75rem 2rem; display: flex; align-items: center; gap: 1rem; }
+  .progress-bar { flex: 1; height: 5px; background: #E0E0E0; border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--orange); border-radius: 3px; transition: width 0.4s ease; }
+  .progress-text { font-size: 12px; color: var(--gray-400); white-space: nowrap; min-width: 60px; text-align: right; }
   .screen { display: none; }
   .screen.active { display: block; }
-
-  /* Container */
-  .container {
-    max-width: 680px;
-    margin: 2rem auto;
-    padding: 0 1.5rem 4rem;
-  }
-
-  /* Card */
-  .card {
-    background: var(--white);
-    border-radius: var(--radius);
-    padding: 2rem;
-    border: 1px solid #E8E8E8;
-  }
-
-  /* Intro screen */
-  .intro-hero {
-    text-align: center;
-    padding: 2.5rem 1rem 1.5rem;
-  }
-  .intro-icon {
-    width: 72px;
-    height: 72px;
-    background: var(--orange-light);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.25rem;
-    font-size: 32px;
-  }
-  .intro-hero h1 {
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--black);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .intro-hero p {
-    font-size: 15px;
-    color: var(--gray-700);
-    line-height: 1.6;
-    max-width: 420px;
-    margin: 0 auto;
-  }
-  .stats-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 1.75rem 0;
-  }
-  .stat-box {
-    background: var(--gray-100);
-    border-radius: var(--radius-sm);
-    padding: 1rem;
-    text-align: center;
-  }
-  .stat-num {
-    font-size: 26px;
-    font-weight: 700;
-    color: var(--orange);
-    display: block;
-  }
-  .stat-label {
-    font-size: 11px;
-    color: var(--gray-400);
-    margin-top: 3px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  /* Form fields */
+  .container { max-width: 680px; margin: 2rem auto; padding: 0 1.5rem 4rem; }
+  .card { background: var(--white); border-radius: var(--radius); padding: 2rem; border: 1px solid #E8E8E8; }
+  .intro-hero { text-align: center; padding: 2.5rem 1rem 1.5rem; }
+  .intro-icon { width: 72px; height: 72px; background: var(--orange-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; font-size: 32px; }
+  .intro-hero h1 { font-size: 26px; font-weight: 700; color: var(--black); margin-bottom: 0.5rem; line-height: 1.3; }
+  .intro-hero p { font-size: 15px; color: var(--gray-700); line-height: 1.6; max-width: 420px; margin: 0 auto; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 1.75rem 0; }
+  .stat-box { background: var(--gray-100); border-radius: var(--radius-sm); padding: 1rem; text-align: center; }
+  .stat-num { font-size: 26px; font-weight: 700; color: var(--orange); display: block; }
+  .stat-label { font-size: 11px; color: var(--gray-400); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
   .field-group { margin-bottom: 1.25rem; }
-  label {
-    display: block;
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--gray-700);
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    letter-spacing: 0.4px;
-  }
-  input[type="text"], input[type="email"] {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1.5px solid #E0E0E0;
-    border-radius: var(--radius-sm);
-    font-size: 15px;
-    color: var(--black);
-    background: var(--white);
-    transition: border-color 0.2s;
-    outline: none;
-  }
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
+  input[type="text"], input[type="email"] { width: 100%; padding: 12px 16px; border: 1.5px solid #E0E0E0; border-radius: var(--radius-sm); font-size: 15px; color: var(--black); background: var(--white); transition: border-color 0.2s; outline: none; }
   input:focus { border-color: var(--orange); }
   input.error { border-color: var(--red); }
-
-  /* Buttons */
-  .btn-primary {
-    background: var(--orange);
-    color: var(--white);
-    border: none;
-    padding: 13px 28px;
-    border-radius: var(--radius-sm);
-    font-size: 15px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    display: inline-block;
-  }
+  .btn-primary { background: var(--orange); color: var(--white); border: none; padding: 13px 28px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s, transform 0.1s; display: inline-block; }
   .btn-primary:hover { background: var(--orange-dark); }
   .btn-primary:active { transform: scale(0.98); }
-  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
-
-  .btn-ghost {
-    background: transparent;
-    color: var(--gray-700);
-    border: 1.5px solid #E0E0E0;
-    padding: 12px 24px;
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: border-color 0.2s, background 0.2s;
-  }
-  .btn-ghost:hover { border-color: var(--gray-400); background: var(--gray-100); }
-
-  /* Question screen */
-  .q-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--orange);
-    margin-bottom: 0.5rem;
-  }
-  .q-text {
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--black);
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-  .q-context {
-    background: var(--gray-100);
-    border-left: 3px solid var(--orange);
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    padding: 10px 14px;
-    font-size: 13px;
-    color: var(--gray-700);
-    margin-bottom: 1.25rem;
-    line-height: 1.5;
-  }
+  .q-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--orange); margin-bottom: 0.5rem; }
+  .q-text { font-size: 17px; font-weight: 600; color: var(--black); line-height: 1.5; margin-bottom: 1.5rem; }
+  .q-context { background: var(--gray-100); border-left: 3px solid var(--orange); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 10px 14px; font-size: 13px; color: var(--gray-700); margin-bottom: 1.25rem; line-height: 1.5; }
   .options { display: flex; flex-direction: column; gap: 10px; }
-  .option {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px 16px;
-    border: 1.5px solid #E0E0E0;
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    background: var(--white);
-    text-align: left;
-    width: 100%;
-  }
+  .option { display: flex; align-items: flex-start; gap: 12px; padding: 14px 16px; border: 1.5px solid #E0E0E0; border-radius: var(--radius-sm); cursor: pointer; transition: border-color 0.15s, background 0.15s; background: var(--white); text-align: left; width: 100%; }
   .option:hover:not(:disabled) { border-color: var(--orange); background: var(--orange-light); }
-  .option.selected { border-color: var(--orange); background: var(--orange-light); }
   .option.correct { border-color: var(--green); background: var(--green-light); }
   .option.wrong { border-color: var(--red); background: var(--red-light); }
   .option.dimmed { opacity: 0.35; }
   .option:disabled { cursor: default; }
-  .opt-letter {
-    width: 26px;
-    height: 26px;
-    border-radius: 50%;
-    background: var(--gray-100);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--gray-700);
-    flex-shrink: 0;
-    transition: background 0.15s, color 0.15s;
-  }
-  .option.selected .opt-letter { background: var(--orange); color: var(--white); }
+  .opt-letter { width: 26px; height: 26px; border-radius: 50%; background: var(--gray-100); display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; color: var(--gray-700); flex-shrink: 0; }
   .option.correct .opt-letter { background: var(--green); color: var(--white); }
   .option.wrong .opt-letter { background: var(--red); color: var(--white); }
   .opt-text { font-size: 14px; color: var(--black); line-height: 1.5; padding-top: 2px; }
-
-  /* Feedback */
-  .feedback {
-    margin-top: 1.25rem;
-    padding: 14px 16px;
-    border-radius: var(--radius-sm);
-    font-size: 14px;
-    line-height: 1.6;
-  }
+  .feedback { margin-top: 1.25rem; padding: 14px 16px; border-radius: var(--radius-sm); font-size: 14px; line-height: 1.6; }
   .feedback.ok { background: var(--green-light); color: #1B5E20; border: 1px solid #A5D6A7; }
   .feedback.bad { background: var(--red-light); color: #7F0000; border: 1px solid #EF9A9A; }
   .feedback strong { display: block; margin-bottom: 4px; font-size: 13px; }
-
-  /* Nav */
-  .nav-row {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 1.5rem;
-  }
-
-  /* Timer */
-  .timer-wrap {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 13px;
-    color: var(--gray-400);
-  }
-  .timer-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--orange);
-    animation: pulse 1.5s infinite;
-  }
+  .nav-row { display: flex; justify-content: flex-end; margin-top: 1.5rem; }
+  .timer-wrap { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray-400); }
+  .timer-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 1.5s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  /* Results */
   .result-hero { text-align: center; padding: 1rem 0 1.5rem; }
-  .score-ring {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 6px solid var(--orange);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1.25rem;
-  }
+  .score-ring { width: 120px; height: 120px; border-radius: 50%; border: 6px solid var(--orange); display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
   .score-big { font-size: 32px; font-weight: 700; color: var(--orange); line-height: 1; }
   .score-denom { font-size: 13px; color: var(--gray-400); margin-top: 2px; }
   .result-msg { font-size: 16px; font-weight: 600; margin-bottom: 0.5rem; }
   .result-sub { font-size: 14px; color: var(--gray-700); line-height: 1.6; max-width: 400px; margin: 0 auto; }
-  .cert-badge {
-    display: inline-block;
-    background: var(--orange-light);
-    color: var(--orange-dark);
-    font-size: 11px;
-    font-weight: 700;
-    padding: 4px 14px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1rem;
-  }
+  .cert-badge { display: inline-block; background: var(--orange-light); color: var(--orange-dark); font-size: 11px; font-weight: 700; padding: 4px 14px; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; }
   .review-list { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 8px; }
-  .review-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 14px;
-    border-radius: var(--radius-sm);
-    font-size: 13px;
-    line-height: 1.5;
-  }
+  .review-item { display: flex; align-items: flex-start; gap: 10px; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 13px; line-height: 1.5; }
   .review-item.ok-item { background: var(--green-light); color: #1B5E20; }
   .review-item.bad-item { background: var(--red-light); color: #7F0000; }
-  .review-icon { flex-shrink: 0; font-size: 15px; }
-
-  .contact-footer {
-    margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid #E8E8E8;
-    font-size: 12px;
-    color: var(--gray-400);
-    text-align: center;
-  }
+  .contact-footer { margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid #E8E8E8; font-size: 12px; color: var(--gray-400); text-align: center; }
   .contact-footer strong { color: var(--gray-700); }
-
   @media (max-width: 480px) {
     .container { padding: 0 1rem 3rem; }
     .card { padding: 1.25rem; }
-    .stats-row { grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .stat-num { font-size: 22px; }
     .intro-hero h1 { font-size: 22px; }
     .q-text { font-size: 15px; }
   }
@@ -382,20 +96,17 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <div class="header">
   <div class="header-logo">d<span>l</span>R <span style="color:#666;font-weight:400;font-size:14px">Group</span></div>
   <div class="header-badge">Certificación IA</div>
 </div>
 
-<!-- PROGRESS BAR (visible durante el quiz) -->
 <div class="progress-wrap" id="progress-wrap" style="display:none">
   <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
   <div class="progress-text" id="progress-text">1 / 10</div>
   <div class="timer-wrap"><div class="timer-dot"></div><span id="timer-display">00:00</span></div>
 </div>
 
-<!-- SCREEN 1: INTRO / REGISTRO -->
 <div class="screen active" id="screen-intro">
   <div class="container">
     <div class="card">
@@ -425,14 +136,12 @@
   </div>
 </div>
 
-<!-- SCREEN 2: PREGUNTA -->
 <div class="screen" id="screen-question">
   <div class="container">
     <div class="card" id="question-card"></div>
   </div>
 </div>
 
-<!-- SCREEN 3: RESULTADOS -->
 <div class="screen" id="screen-results">
   <div class="container">
     <div class="card" id="results-card"></div>
@@ -440,8 +149,12 @@
 </div>
 
 <script>
-const questions = [
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJvmb3v833aYrxXQrTakpq6q6Jqw5c7L5pgVd_HPW8jJqPMigTvjmnnHAD_szR_cJRpA/exec';
+
+// Banco de preguntas — orden fijo para el Sheet, aleatorio para el participante
+const allQuestions = [
   {
+    id: 1,
     topic: 'Principio fundamental',
     q: '¿Cuál es la descripción más precisa del rol de la IA dentro del flujo de trabajo en dlR?',
     context: null,
@@ -455,6 +168,7 @@ const questions = [
     feedback: 'El flujo correcto es: TÚ piensas → IA fortalece → TÚ decides → TÚ respondes. La responsabilidad final siempre recae en el humano, independientemente de la herramienta usada.'
   },
   {
+    id: 2,
     topic: 'Usos permitidos',
     q: '¿Cuál de los siguientes es un uso permitido y responsable de IA en tu trabajo diario?',
     context: null,
@@ -468,6 +182,7 @@ const questions = [
     feedback: 'Usar IA para mejorar ideas y estructura editorial es un uso permitido, siempre que TÚ generes la dirección inicial y supervises el output. Los otros casos involucran datos sensibles, cuentas no autorizadas o falta de validación humana.'
   },
   {
+    id: 3,
     topic: 'Clasificación de datos',
     q: 'Un colega quiere subir los siguientes datos a Claude Pro corporativo para análisis. ¿Cuál es el único caso que cumple con los lineamientos sin requerir pasos adicionales?',
     context: null,
@@ -478,9 +193,10 @@ const questions = [
       'Base de datos de encuesta con emails y teléfonos de respondentes'
     ],
     correct: 2,
-    feedback: 'Datos agregados sin posibilidad de identificación son Nivel 1: se pueden usar con cualquier herramienta, incluso gratuita. Los otros tres casos son Nivel 2 o Nivel 3 y requieren pasos adicionales o están prohibidos sin autorización explícita.'
+    feedback: 'Datos agregados sin posibilidad de identificación son Nivel 1: se pueden usar con cualquier herramienta. Los otros tres casos son Nivel 2 o Nivel 3 y requieren pasos adicionales o están prohibidos sin autorización explícita.'
   },
   {
+    id: 4,
     topic: 'Tipos de cuenta',
     q: 'Tienes una cuenta corporativa Pro de Claude. ¿Qué afirmación es correcta respecto a lo que puedes hacer con datos de clientes?',
     context: null,
@@ -491,9 +207,10 @@ const questions = [
       'Puedes subir datos Nivel 3 si el archivo está en PDF y no en formato de base de datos'
     ],
     correct: 1,
-    feedback: 'Mayor seguridad técnica NO significa libertad total. Con cuentas corporativas debes: verificar el contrato con el cliente, revisar el aviso de privacidad a participantes, y obtener autorización cuando sea necesario. El formato del archivo no cambia el nivel de sensibilidad del dato.'
+    feedback: 'Mayor seguridad técnica NO significa libertad total. Con cuentas corporativas debes: verificar el contrato con el cliente, revisar el aviso de privacidad a participantes, y obtener autorización cuando sea necesario.'
   },
   {
+    id: 5,
     topic: 'Datos prohibidos',
     q: 'Eres investigadora cualitativa. El cliente te presiona para entregar resultados rápido. ¿Cuál de estas acciones está PROHIBIDA según la guía?',
     context: 'El estudio incluyó entrevistas a profundidad con consumidores. Tienes las transcripciones completas con nombres, edad y ciudad de cada participante.',
@@ -504,9 +221,10 @@ const questions = [
       'Consultar a tu líder si puedes usar las transcripciones con herramientas de IA antes de proceder'
     ],
     correct: 2,
-    feedback: 'Las transcripciones con datos identificables son Nivel 3 (PII). Subirlas a una cuenta gratuita está terminantemente prohibido: los datos pueden usarse para entrenar modelos, no hay garantías de privacidad y viola las obligaciones contractuales con el cliente.'
+    feedback: 'Las transcripciones con datos identificables son Nivel 3 (PII). Subirlas a una cuenta gratuita está terminantemente prohibido: los datos pueden usarse para entrenar modelos y viola las obligaciones contractuales con el cliente.'
   },
   {
+    id: 6,
     topic: 'Validación humana',
     q: 'Generaste con IA un análisis de benchmarking de la industria para incluir en una propuesta. ¿Qué debes hacer antes de usarlo?',
     context: null,
@@ -517,9 +235,10 @@ const questions = [
       'Pedir a la IA que valide su propio output antes de usar'
     ],
     correct: 1,
-    feedback: 'Las IAs pueden "alucinar" — generar información incorrecta o inventada. Siempre debes validar fuentes, revisar críticamente y hacer el output tuyo antes de usarlo en cualquier entregable, aunque la información parezca correcta.'
+    feedback: 'Las IAs pueden "alucinar". Siempre debes validar fuentes, revisar críticamente y hacer el output tuyo antes de usarlo en cualquier entregable, aunque la información parezca correcta.'
   },
   {
+    id: 7,
     topic: 'Protocolo de incidentes',
     q: 'Accidentalmente subiste a una herramienta de IA un contrato con información confidencial de un cliente. ¿Cuál es el orden correcto de acciones?',
     context: null,
@@ -530,9 +249,10 @@ const questions = [
       'Contactar directamente al proveedor de IA para pedirle que elimine los datos'
     ],
     correct: 2,
-    feedback: 'Ante un incidente: (1) Reporta inmediatamente a tu líder, (2) Documenta qué información subiste y a qué herramienta, (3) NO borres evidencia — se necesita para evaluar el impacto, (4) Sigue el protocolo de incidentes. Ocultar el incidente agrava el problema legal y reputacional.'
+    feedback: 'Ante un incidente: (1) Reporta inmediatamente a tu líder, (2) Documenta qué subiste y a qué herramienta, (3) NO borres evidencia, (4) Sigue el protocolo. Ocultar el incidente agrava el problema legal y reputacional.'
   },
   {
+    id: 8,
     topic: 'Decisiones críticas',
     q: '¿Cuál de las siguientes situaciones representa una violación al principio de responsabilidad humana en el uso de IA?',
     context: null,
@@ -543,9 +263,10 @@ const questions = [
       'Generar un borrador de email con IA y ajustarlo antes de enviarlo'
     ],
     correct: 2,
-    feedback: 'Delegar decisiones críticas (precios, contrataciones, estrategia) a la IA sin revisión humana es una violación ética y una abdicación de responsabilidad. La IA puede proporcionar insumos, pero las decisiones de negocio deben ser tomadas por humanos.'
+    feedback: 'Delegar decisiones críticas (precios, contrataciones, estrategia) a la IA sin revisión humana es una violación ética. La IA puede proporcionar insumos, pero las decisiones de negocio deben ser tomadas por humanos.'
   },
   {
+    id: 9,
     topic: 'Etiquetado de contenido IA',
     q: '¿En qué situación es obligatorio etiquetar un entregable como "Generado por IA" o "IA-asistido"?',
     context: null,
@@ -556,9 +277,10 @@ const questions = [
       'Solo en reportes externos, no en documentos internos'
     ],
     correct: 1,
-    feedback: 'Si el output va directo al cliente o uso final sin modificación humana, debe etiquetarse claramente. Si tú revisaste, validaste y añadiste criterio experto, el output ya es tuyo. La transparencia protege a dlR legal y reputacionalmente.'
+    feedback: 'Si el output va directo sin modificación humana, debe etiquetarse claramente. Si tú revisaste y añadiste criterio experto, el output ya es tuyo. La transparencia protege a dlR legal y reputacionalmente.'
   },
   {
+    id: 10,
     topic: 'Principio de precaución',
     q: 'Tienes dudas sobre si tu contrato con el cliente permite usar IA para procesar datos del estudio. ¿Qué debes hacer?',
     context: 'El cliente es una empresa multinacional con cláusulas estrictas de confidencialidad. No encontraste una mención explícita al uso de IA en el contrato.',
@@ -569,16 +291,28 @@ const questions = [
       'Anonimizar los datos cambiando los nombres y proceder con herramientas gratuitas'
     ],
     correct: 1,
-    feedback: 'El principio de precaución de la guía es claro: "En caso de duda, no lo subas. Consulta primero." Es mejor retrasar el trabajo que violar un acuerdo contractual. La ausencia de prohibición explícita no equivale a permiso. Siempre consulta con tu líder o legal.'
+    feedback: '"En caso de duda, no lo subas. Consulta primero." La ausencia de prohibición explícita no equivale a permiso. Siempre consulta con tu líder o legal antes de proceder.'
   }
 ];
 
+// Estado
 let userName = '';
 let userEmail = '';
 let currentQ = 0;
-let answers = [];
+let answers = {}; // guardado por id de pregunta, no por posición
+let shuffledQuestions = [];
 let startTime = null;
 let timerInterval = null;
+
+// Mezclar preguntas aleatoriamente
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 function startQuiz() {
   const name = document.getElementById('inp-name').value.trim();
@@ -595,7 +329,8 @@ function startQuiz() {
   userName = name;
   userEmail = email;
   currentQ = 0;
-  answers = [];
+  answers = {};
+  shuffledQuestions = shuffle(allQuestions);
 
   document.getElementById('progress-wrap').style.display = 'flex';
   startTime = Date.now();
@@ -613,11 +348,11 @@ function updateTimer() {
 }
 
 function renderQuestion() {
-  const q = questions[currentQ];
-  const answered = answers[currentQ];
+  const q = shuffledQuestions[currentQ];
+  const answered = answers[q.id];
   const letters = ['A', 'B', 'C', 'D'];
 
-  document.getElementById('progress-fill').style.width = `${((currentQ) / 10) * 100}%`;
+  document.getElementById('progress-fill').style.width = `${(currentQ / 10) * 100}%`;
   document.getElementById('progress-text').textContent = `${currentQ + 1} / 10`;
 
   let html = `
@@ -649,7 +384,7 @@ function renderQuestion() {
       ${q.feedback}
     </div>`;
 
-    if (currentQ < questions.length - 1) {
+    if (currentQ < shuffledQuestions.length - 1) {
       html += `<div class="nav-row"><button class="btn-primary" onclick="nextQuestion()">Siguiente →</button></div>`;
     } else {
       html += `<div class="nav-row"><button class="btn-primary" onclick="showResults()">Ver mi resultado →</button></div>`;
@@ -660,8 +395,9 @@ function renderQuestion() {
 }
 
 function selectAnswer(i) {
-  if (answers[currentQ] !== undefined) return;
-  answers[currentQ] = i;
+  const q = shuffledQuestions[currentQ];
+  if (answers[q.id] !== undefined) return;
+  answers[q.id] = i;
   renderQuestion();
 }
 
@@ -669,8 +405,6 @@ function nextQuestion() {
   currentQ++;
   renderQuestion();
 }
-
-const SHEET_URL = 'https://script.google.com/macros/s/AKfycbzJvmb3v833aYrxXQrTakpq6q6Jqw5c7L5pgVd_HPW8jJqPMigTvjmnnHAD_szR_cJRpA/exec';
 
 function enviarResultados(datos) {
   fetch(SHEET_URL, {
@@ -685,29 +419,35 @@ function showResults() {
   clearInterval(timerInterval);
   document.getElementById('progress-wrap').style.display = 'none';
 
-  const correct = answers.filter((a, i) => a === questions[i].correct).length;
+  // Calcular resultados por id (orden fijo para el Sheet)
+  const correct = allQuestions.filter(q => answers[q.id] === q.correct).length;
   const pct = Math.round(correct / 10 * 100);
   const passed = pct >= 70;
   const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  const m = Math.floor(elapsed / 60);
-  const s = elapsed % 60;
-  const timeStr = `${m}m ${s}s`;
+  const timeStr = `${Math.floor(elapsed / 60)}m ${elapsed % 60}s`;
 
-  const detalle = questions.map((q, i) => {
-    const ok = answers[i] === q.correct;
-    return `P${i+1} ${ok ? '✓' : '✗'} (${q.topic})`;
-  }).join(' | ');
-
-  enviarResultados({
+  // Construir payload con columna por pregunta (en orden fijo 1-10)
+  const payload = {
     nombre: userName,
     correo: userEmail,
     puntaje: correct,
     porcentaje: pct,
     resultado: passed ? 'APROBADO' : 'NO APROBADO',
-    tiempo: timeStr,
-    detalle: detalle
+    tiempo: timeStr
+  };
+
+  // Una columna por pregunta, siempre en el mismo orden (P1 a P10)
+  allQuestions.forEach(q => {
+    const respondio = answers[q.id];
+    const esCorrecta = respondio === q.correct;
+    payload[`P${q.id}_${q.topic}`] = respondio !== undefined
+      ? (esCorrecta ? 'CORRECTA' : `INCORRECTA (eligió ${['A','B','C','D'][respondio]}, correcta ${['A','B','C','D'][q.correct]})`)
+      : 'SIN RESPUESTA';
   });
 
+  enviarResultados(payload);
+
+  // UI de resultados
   let msg, sub;
   if (pct >= 90) {
     msg = '¡Excelente resultado!';
@@ -721,15 +461,15 @@ function showResults() {
   }
 
   let reviewHtml = '';
-  questions.forEach((q, i) => {
-    const ok = answers[i] === q.correct;
+  allQuestions.forEach(q => {
+    const ok = answers[q.id] === q.correct;
     reviewHtml += `<div class="review-item ${ok ? 'ok-item' : 'bad-item'}">
-      <span class="review-icon">${ok ? '✓' : '✗'}</span>
+      <span style="flex-shrink:0">${ok ? '✓' : '✗'}</span>
       <span>${q.topic}: <em>${q.q.substring(0, 55)}...</em></span>
     </div>`;
   });
 
-  const html = `
+  document.getElementById('results-card').innerHTML = `
     <div class="result-hero">
       <div class="cert-badge">${passed ? '✓ Certificación aprobada' : 'Certificación no aprobada'}</div>
       <div class="score-ring">
@@ -738,9 +478,7 @@ function showResults() {
       </div>
       <div class="result-msg">${msg}</div>
       <div class="result-sub">${sub}</div>
-      <div style="margin-top:1rem;font-size:13px;color:var(--gray-400)">
-        ${userName} · ${userEmail} · ${timeStr}
-      </div>
+      <div style="margin-top:1rem;font-size:13px;color:var(--gray-400)">${userName} · ${userEmail} · ${timeStr}</div>
     </div>
     <div style="border-top:1px solid #E8E8E8;padding-top:1.25rem;margin-top:0.5rem">
       <div style="font-size:13px;font-weight:600;color:var(--gray-700);margin-bottom:0.75rem;text-transform:uppercase;letter-spacing:0.4px">Resumen por tema</div>
@@ -751,7 +489,6 @@ function showResults() {
     </div>
   `;
 
-  document.getElementById('results-card').innerHTML = html;
   showScreen('screen-results');
 }
 
